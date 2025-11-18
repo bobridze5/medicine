@@ -28,7 +28,9 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'users.CustomUser'
-
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'pages:homepage'
+LOGOUT_REDIRECT_URL = 'pages:homepage'
 
 # Application definition
 
@@ -39,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users.apps.UsersConfig'
+    'users.apps.UsersConfig',
+    'django_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -54,10 +57,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'medicine.urls'
 
+TEMPLATES_DIR = BASE_DIR / 'templates'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIR,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
