@@ -2,7 +2,8 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-  <div class="card col-4 m-3">
+<div class="d-flex justify-content-center align-items-center">
+  <div class="card col-5">
     <div class="card-header">
       Регистрация пользователя
     </div>
@@ -10,8 +11,9 @@
       <form method="post">
         {% csrf_token %}
         {% bootstrap_form form %}
-        {% bootstrap_button button_type="submit" content="Зарегистрироваться" %}
+        {% bootstrap_button button_type="submit" content="Зарегистрироваться" extra_classes="w-100"  %}
       </form>
     </div>
   </div>
+</div>
 {% endblock %}

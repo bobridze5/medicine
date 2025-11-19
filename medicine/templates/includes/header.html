@@ -15,23 +15,28 @@
             <a class="nav-link"
               {% comment %} href="{% url 'birthday:create' %}"> {% endcomment %}
               href="#">
-              Калькулятор дней рождения
+              Запись на приём
             </a>
           </li>
           <li class="nav-item">
             {% comment %} <a class="nav-link {% if view_name == 'birthday:list' %} active {% endif %}" href="{% url 'birthday:list' %}"> {% endcomment %}
             <a class="nav-link" 
             href="#">
-              Cписок дней рождения
+              Наши специалисты
             </a>
           </li>
           {% if user.is_authenticated %}
-            <span class="navbar-text">Пользователь: <b>{{ user.username }}</b></span>
-            <!-- Новая кнопка -->
+            <span class="navbar-text">Пользователь: <b>{{ user.email }}</b></span>
+            <li class="nav-item">
+                {% comment %} <a class="nav-link{% if view_name == 'profile' %} active {% endif %}" href="{% url 'profile' %}">Профиль</a> {% endcomment %}
+                <a class="nav-link" href="#">Профиль</a>
+            </li>
+
             <li class="nav-item">
               <a class="nav-link{% if view_name == 'password_change' %} active {% endif %}"
                 href="{% url 'password_change' %}">Изменить пароль</a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
             </li>

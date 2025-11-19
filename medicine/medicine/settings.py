@@ -32,6 +32,8 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'pages:homepage'
 LOGOUT_REDIRECT_URL = 'pages:homepage'
 
+# MEDIA_URL = 'news/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
+    'news.apps.NewsConfig',
+    'pages.apps.PagesConfig',
     'django_bootstrap5',
 ]
 

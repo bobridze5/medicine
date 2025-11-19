@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include, reverse_lazy
 from users.forms import UserCreationForm
 from django.views.generic import CreateView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("", include('pages.urls')),
@@ -27,5 +29,10 @@ urlpatterns = [
         form_class=UserCreationForm,
         success_url=reverse_lazy('login')
     ), name='registration'),
+    path('news/', include('news.urls')),
     # path('auth/registration/',)
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
