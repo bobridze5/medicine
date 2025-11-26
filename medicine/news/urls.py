@@ -4,6 +4,10 @@ from . import views
 app_name = 'news'
 
 urlpatterns = [
+    path('',
+         views.NewsArticleListView.as_view(),
+         name='news_article_list'
+         ),
     path(
         'create/',
         views.CreateNewsArticleView.as_view(),
@@ -14,9 +18,10 @@ urlpatterns = [
         views.NewsArticleDetailView.as_view(),
         name='news_article_detail'
     ),
-    path('',
-         views.NewsArticleListView.as_view(),
-         name='news_article_list'
+    path("<int:pk>/update/",
+         views.UpdateNewsArticleView.as_view(),
+         name="update_news_article"
+         #  TODO: изменить название! news_update_article
          ),
     path(
         '<int:pk>/delete/',

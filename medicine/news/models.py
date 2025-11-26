@@ -9,7 +9,12 @@ class NewsArticle(models.Model):
     title = models.CharField('Заголовок', max_length=200)
     content = models.TextField('Содержание')
     published_date = models.DateTimeField('Дата публикации', auto_now_add=True)
-    image = models.ImageField(upload_to='news/media/', null=True, blank=True)
+    image = models.ImageField(
+        "Изображение",
+        upload_to='news/media/',
+        null=True,
+        blank=True
+    )
     author = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True, verbose_name='Автор')
 

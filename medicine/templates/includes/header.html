@@ -10,6 +10,9 @@
               Главная
             </a>
           </li>
+          <li class ="nav-item">
+            <a class="nav-link {% if view_name == 'news:news_article_list' %} active {% endif %}" href="{% url 'news:news_article_list' %}" >Новости</a>
+          </li>
           <li class="nav-item">
             {% comment %} <a class="nav-link {% if view_name == 'birthday:create' %} active {% endif %}" {% endcomment %}
             <a class="nav-link"
@@ -25,17 +28,19 @@
               Наши специалисты
             </a>
           </li>
+        </ul>
+
+          <ul class="nav nav-pills ms-auto">
           {% if user.is_authenticated %}
             <span class="navbar-text">Пользователь: <b>{{ user.email }}</b></span>
             <li class="nav-item">
-                {% comment %} <a class="nav-link{% if view_name == 'profile' %} active {% endif %}" href="{% url 'profile' %}">Профиль</a> {% endcomment %}
-                <a class="nav-link" href="#">Профиль</a>
+                <a class="nav-link{% if view_name == 'profile' %} active {% endif %}" href="{% url 'profile:profile_view' %}">Профиль</a>
             </li>
 
-            <li class="nav-item">
+            {% comment %} <li class="nav-item">
               <a class="nav-link{% if view_name == 'password_change' %} active {% endif %}"
                 href="{% url 'password_change' %}">Изменить пароль</a>
-            </li>
+            </li> {% endcomment %}
 
             <li class="nav-item">
               <a class="nav-link" href="{% url 'logout' %}">Выйти</a>

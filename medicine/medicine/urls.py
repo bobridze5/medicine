@@ -30,6 +30,7 @@ urlpatterns = [
         success_url=reverse_lazy('login')
     ), name='registration'),
     path('news/', include('news.urls')),
+    path('profile/', include('user_settings.urls')),
     # path('auth/registration/',)
 ]
 
