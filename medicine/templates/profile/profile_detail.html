@@ -6,50 +6,48 @@
 <div class="container d-flex justify-content-center">
     <div class="card p-4 shadow-sm" style="max-width: 700px; width: 100%; border-radius: 15px;">
 
+        <div class="mb-3">
+            <label class="form-label">Адрес электронной почты</label>
+            <input type="text" class="form-control" value="{{ user.email }}" disabled>
+        </div>
+
         <div class="row mb-3">
             <div class="col">
                 <label class="form-label">Фамилия</label>
-                <input type="text" class="form-control" value="{{ user.last_name }}" disabled>
+                <input type="text" class="form-control" value="{{ data.last_name }}" disabled>
             </div>
             <div class="col">
                 <label class="form-label">Имя</label>
-                <input type="text" class="form-control" value="{{ user.first_name }}" disabled>
+                <input type="text" class="form-control" value="{{ data.first_name }}" disabled>
             </div>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Отчество</label>
-            <input type="text" class="form-control" value="{{ user.middle_name }}" disabled>
+            <input type="text" class="form-control" value="{{ data.middle_name }}" disabled>
         </div>
 
         <div class="row mb-3">
             <div class="col">
                 <label class="form-label">Пол</label>
-                <input type="text" class="form-control" value="{{ user.get_gender_display }}" disabled>
+                <input type="text" class="form-control" value="{{ data.get_gender_display }}" disabled>
             </div>
             <div class="col">
                 <label class="form-label">Телефон</label>
-                <input type="text" class="form-control" value="{{ user.phone }}" disabled>
+                <input type="text" class="form-control" value="{{ data.phone }}" disabled>
             </div>
         </div>
 
         <div class="mb-4">
             <label class="form-label">Дата рождения</label>
-            <input type="text" class="form-control" value="{{ user.date_of_birth|date:"d.m.Y" }}" disabled>
+            <input type="text" class="form-control" value="{{ data.date_of_birth|date:"d.m.Y" }}" disabled>
         </div>
 
-        <div class="row mb-3">
-            <div class="col">
-                <label class="form-label">ОСАГО</label>
-                <input type="text" class="form-control" value="{{ user.get_gender_display }}" disabled>
-            </div>
-            <div class="col">
-                <label class="form-label">ПОЛИС</label>
-                <input type="text" class="form-control" value="{{ user.phone }}" disabled>
-            </div>
+        <div class="mb-3">
+            <label class="form-label">СНИЛС</label>
+            <input type="text" class="form-control" value="{{ data.snils }}" disabled>
         </div>
 
-        <!-- Кнопки -->
         <div class="d-flex justify-content-between mt-4">
             <a href="{% url 'profile:profile_edit' %}" class="btn btn-primary px-4">Редактировать</a>
             <a href="{% url 'password_change' %}" class="btn btn-outline-secondary px-4">Сменить пароль</a>

@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
-from .validators import real_age
+# from .validators import real_age, check_snils, check_phone, check_string_only
 # AbstractUser - расширение текущей модели
 # BaseAbstractUser - полное создание модели пользователя с нуля + надо определить BaseManager
 # https://docs.djangoproject.com/en/3.2/topics/auth/customizing/#custom-users-and-permissions
@@ -42,39 +42,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         db_index=True
     )
 
-    first_name = models.CharField('Имя', max_length=40, blank=False)
-    last_name = models.CharField('Фамилия', max_length=40, blank=False)
-    middle_name = models.CharField(
-        'Отчество',
-        blank=True,
-        max_length=40,
-        help_text='Необязательное поле'
-    )
-
-    gender = models.CharField(
-        'Пол',
-        max_length=1,
-        choices=(
-            ('M', 'Мужской'),
-            ('F', 'Женский'),
-        ),
-        blank=True
-    )
-
-    phone = models.CharField(
-        'Телефон',
-        max_length=20,
-        unique=True,
-        blank=True
-    )
-
-    date_of_birth = models.DateField(
-        'Дата рождения',
-        validators=(real_age,),
-        null=True,
-        blank=True,
-    )
-
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
@@ -82,7 +49,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['phone']
+    REQUIRED_FIELDS = []
 
     def __str__(self):
         return self.email

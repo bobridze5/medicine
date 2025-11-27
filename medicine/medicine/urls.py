@@ -27,11 +27,11 @@ urlpatterns = [
     path('auth/registration/', CreateView.as_view(
         template_name='registration/registration_form.html',
         form_class=UserCreationForm,
-        success_url=reverse_lazy('login')
+        success_url=reverse_lazy('profile:profile_create')
     ), name='registration'),
     path('news/', include('news.urls')),
     path('profile/', include('user_settings.urls')),
-    # path('auth/registration/',)
+    path('patients/', include('patients.urls')),
 ]
 
 if settings.DEBUG:

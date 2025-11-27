@@ -11,6 +11,16 @@ urlpatterns = [
         name="profile_view"
     ),
     path(
+        "create/",
+        views.CreateViewProfile.as_view(),
+        name="profile_create"
+    ),
+    path(
+        "role/",
+        views.ProfileChooseRoleView.as_view(),
+        name="profile_choose_role"
+    ),
+    path(
         # '<int:pk>/edit/',
         'edit/',
         views.UpdateViewProfile.as_view(),

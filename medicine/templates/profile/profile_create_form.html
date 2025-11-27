@@ -6,12 +6,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
 
-            <h2 class="mb-4 text-center">Редактирование профиля</h2>
+            <h2 class="mb-4 text-center">Настройка профиля</h2>
 
             <form method="post" class="card p-4 shadow-sm rounded-4">
                 {% csrf_token %}
 
                 <div class="row">
+                    {{ form.email.as_hidden }}
+
                     <div class="col-md-6 mb-3">
                         {% bootstrap_field form.last_name %}
                     </div>
@@ -35,10 +37,21 @@
                     <div class="col-md-12 mb-3">
                         {% bootstrap_field form.date_of_birth %}
                     </div>
+
+                    <div class="col-md-12 mb-3">
+                        {% bootstrap_field form.snils %}
+                    </div>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="consent" name="consent" required>
+                    <label class="form-check-label" for="consent">
+                        Я согласен на обработку персональных данных
+                    </label>
                 </div>
 
                 <button type="submit" class="btn btn-primary w-100 mt-3">
-                    Сохранить
+                    Далее
                 </button>
             </form>
 

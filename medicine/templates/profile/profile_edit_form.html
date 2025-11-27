@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<h1 class="mb-4 text-center">Редактирование профиля</h2>
+<div class="container d-flex justify-content-center">
+    <div class="card p-4 shadow-sm" style="max-width: 700px; width: 100%; border-radius: 15px;">
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    {% bootstrap_field form.email %}
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col">
+                        {% bootstrap_field form.last_name %}
+                    </div>
+                    <div class="col">
+                        {% bootstrap_field form.first_name %}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    {% bootstrap_field form.middle_name %}
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col">
+                        {% bootstrap_field form.gender %}
+                    </div>
+                    <div class="col">
+                        {% bootstrap_field form.phone %}
+                    </div>
+                </div>
+
+                <div class="m4">
+                    {% bootstrap_field form.date_of_birth %}
+                </div>
+
+                <div class="mb-3">
+                    {% bootstrap_field form.snils %}
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 mt-3">
+                    Сохранить
+                </button>
+            </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <h2 class="text-center mb-4">Кого зарегистрировать?</h2>
+
+            <div class="d-grid gap-3">
+                <a href="{% url 'patients:patient_create' %}" class="btn btn-secondary btn-lg">
+                    Регистрация пациента
+                </a>
+
+                {% comment %} <a href="{% url 'doctor:register_doctor' %}" class="btn btn-secondary btn-lg"> {% endcomment %}
+                <a href="#" class="btn btn-primary btn-lg">
+                    Регистрация врача
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

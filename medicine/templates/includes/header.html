@@ -33,9 +33,12 @@
           <ul class="nav nav-pills ms-auto">
           {% if user.is_authenticated %}
             <span class="navbar-text">Пользователь: <b>{{ user.email }}</b></span>
+
+            {% if view_name != 'profile:profile_create' %}
             <li class="nav-item">
                 <a class="nav-link{% if view_name == 'profile' %} active {% endif %}" href="{% url 'profile:profile_view' %}">Профиль</a>
             </li>
+            {% endif %}
 
             {% comment %} <li class="nav-item">
               <a class="nav-link{% if view_name == 'password_change' %} active {% endif %}"

@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'news.apps.NewsConfig',
     'pages.apps.PagesConfig',
+    'doctors.apps.DoctorsConfig',
+    'patients.apps.PatientsConfig',
     'user_settings.apps.UserSettingsConfig',
     'django_bootstrap5',
 ]

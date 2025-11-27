@@ -18,6 +18,10 @@ class UserCreationForm(forms.ModelForm):
         model = CustomUser
         fields = ('email',)
 
+        widgets = {
+            'email': forms.EmailInput(attrs={'placeholder': 'example@mail.ru'}),
+        }
+
     def clean_password1(self):
         password1 = self.cleaned_data.get('password1')
 

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+
+            <h2 class="mb-4 text-center">Настройка данных пациента</h2>
+
+            <form method="post" class="card p-4 shadow-sm rounded-4">
+                {% csrf_token %}
+
+                <div class="row">
+                    <div class="mb-3">
+                        {% bootstrap_field form.medical_record_number %}
+                    </div>
+
+                    <div class="mb-3 form-check">
+                        {{ form.first_time }}
+                        <label class="form-check-label" for="id_first_time">
+                            У меня нет карты / обращаюсь впервые
+                        </label>
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        {% bootstrap_field form.oms_number %}
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        {% bootstrap_field form.emergency_contact_name %}
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        {% bootstrap_field form.emergency_contact_phone %}
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        {% bootstrap_field form.blood_type %}
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        {% bootstrap_field form.allergies %}
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        {% bootstrap_field form.chronic_conditions %}
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        {% bootstrap_field form.disability_group %}
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 mt-3">
+                    Сохранить
+                </button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const checkbox = document.getElementById("id_first_time");
+    const cardField = document.getElementById("id_medical_record_number");
+
+    function toggleCardField() {
+        cardField.disabled = checkbox.checked;
+        if (checkbox.checked) {
+            cardField.value = "";  
+        }
+    }
+
+    toggleCardField();
+
+    checkbox.addEventListener("change", toggleCardField);
+});
+</script>
+{% endblock %}
