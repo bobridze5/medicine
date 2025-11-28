@@ -3,7 +3,7 @@ from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import (ListView, DetailView, CreateView)
+from django.views.generic import (ListView, DetailView, CreateView, DeleteView)
 from patients.models import MedicalCard, Patient
 from doctors.models import Doctor, Specialization
 from .models import Appointment, TimeSlot
@@ -138,3 +138,16 @@ class AppointmentDetailView(LoginRequiredMixin, DetailView):
     model = Appointment
     template_name = 'appointments/appointment_detail.html'
     context_object_name = 'appointment'
+
+
+class AppointmentDeleteView(LoginRequiredMixin, DeleteView):
+    model = Appointment
+    template_name = 'appointments/appointment_confirm_delete.html'
+    context_object_name = 'appointment'
+
+    def get_queryset(self):
+        patient = Patient.objects.get(user=self.request.user)
+        return Appointment.objects.filter(patient=patient)
+
+    def get_success_url(self):
+        return reverse_lazy('appointment:my_appointments')

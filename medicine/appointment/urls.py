@@ -36,4 +36,13 @@ urlpatterns = [
         '<int:pk>/', views.AppointmentDetailView.as_view(),
         name='appointment_detail'
     ),
+
+    path(
+        '<int:pk>/delete/',
+        views.AppointmentDeleteView.as_view(),
+        name='appointment_delete'
+    ),
+
+
+
 ]
