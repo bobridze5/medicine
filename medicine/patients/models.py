@@ -114,10 +114,13 @@ class Patient(models.Model):
 
 
 class MedicalCard(models.Model):
+    # Карта может существовать без patient - добавили вручную (адиминистратор / персонал?)
     patient = models.OneToOneField(
         Patient,
         on_delete=models.CASCADE,
-        related_name='medical_card'
+        related_name='medical_card',
+        blank=True,
+        null=True
     )
 
     number = models.CharField(
@@ -136,14 +139,3 @@ class MedicalCard(models.Model):
 
     def __str__(self):
         return f'{self.patient.user.get_full_name()} (карта {self.number})'
-
-    def save(self, *args, **kwargs):
-        # Автогенерация номера карты если его нет
-        if not self.number:
-            last_card = MedicalCard.objects.order_by('-id').first()
-            if last_card:
-                self.number = last_card.number + 1
-            else:
-                self.number = 1
-
-        super().save(*args, **kwargs)

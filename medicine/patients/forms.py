@@ -1,5 +1,5 @@
 from django import forms
-from .models import Patient
+from .models import Patient, MedicalCard
 
 
 class PatientForm(forms.ModelForm):
@@ -12,6 +12,23 @@ class PatientForm(forms.ModelForm):
         required=False,
         label="У меня нет карты / обращаюсь впервые"
     )
+
+    def clean_medical_record_number(self):
+        card_number = self.cleaned_data.get('medical_record_number')
+
+        if card_number:
+            try:
+                card = MedicalCard.objects.get(number=card_number)
+                if card.patient != None:
+                    raise forms.ValidationError(
+                        'Медицинская карта привязана к другому пациенту'
+                    )
+            except:
+                raise forms.ValidationError(
+                    'Медицинская карта с таким номером не найдена.'
+                )
+
+        return card_number
 
     class Meta:
         model = Patient
