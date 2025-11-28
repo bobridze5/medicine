@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'doctors.apps.DoctorsConfig',
     'patients.apps.PatientsConfig',
     'user_settings.apps.UserSettingsConfig',
+    'appointment.apps.AppointmentConfig',
     'django_bootstrap5',
 ]
 
