@@ -14,18 +14,13 @@
             <a class="nav-link {% if view_name == 'news:news_article_list' %} active {% endif %}" href="{% url 'news:news_article_list' %}" >Новости</a>
           </li>
           <li class="nav-item">
-            {% comment %} <a class="nav-link {% if view_name == 'birthday:create' %} active {% endif %}" {% endcomment %}
-            <a class="nav-link"
-              {% comment %} href="{% url 'birthday:create' %}"> {% endcomment %}
-              href="#">
+            <a class="nav-link {% if view_name == 'appointment:specialization_list' %} active {% endif %}" href="{% url 'appointment:specialization_list' %}">
               Запись на приём
             </a>
           </li>
           <li class="nav-item">
-            {% comment %} <a class="nav-link {% if view_name == 'birthday:list' %} active {% endif %}" href="{% url 'birthday:list' %}"> {% endcomment %}
-            <a class="nav-link" 
-            href="#">
-              Наши специалисты
+            <a class="nav-link {% if view_name == 'pages:contacts' %} active {% endif %}" href="{% url 'pages:contacts' %}">
+              Контакты
             </a>
           </li>
         </ul>
@@ -40,11 +35,6 @@
             </li>
             {% endif %}
 
-            {% comment %} <li class="nav-item">
-              <a class="nav-link{% if view_name == 'password_change' %} active {% endif %}"
-                href="{% url 'password_change' %}">Изменить пароль</a>
-            </li> {% endcomment %}
-
             <li class="nav-item">
               <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
             </li>
@@ -52,7 +42,6 @@
             <li class="nav-item">
               <a class="nav-link{% if view_name == 'login' %} active {% endif %}" href="{% url 'login' %}">Войти</a>
             </li>
-            <!-- Новая кнопка -->
             <li class="nav-item">
               <a class="nav-link{% if view_name == 'registration' %} active {% endif %}" href="{% url 'registration' %}">Регистрация</a>
             </li>

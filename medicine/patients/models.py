@@ -110,7 +110,7 @@ class Patient(models.Model):
         ordering = ['-date_created']
 
     def __str__(self):
-        return f'{self.user.get_full_name()}'
+        return f'{self.user.settings.get_full_name()}'
 
 
 class MedicalCard(models.Model):
@@ -138,4 +138,4 @@ class MedicalCard(models.Model):
         ordering = ['-date_created']
 
     def __str__(self):
-        return f'{self.patient.user.get_full_name()} (карта {self.number})'
+        return f'{self.patient.user.settings.get_full_name()} (карта {self.number})'

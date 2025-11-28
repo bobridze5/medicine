@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4">Контакты</h1>
+        <p class="lead">
+            Свяжитесь с нами по телефону, электронной почте или через форму обратной связи.
+        </p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Наши контакты</h5>
+                    <p class="card-text">
+                        <strong>Адрес:</strong> г. Томск, ул. Примерная, 1<br>
+                        <strong>Телефон:</strong> +7 (3822) 123-456<br>
+                        <strong>Email:</strong> info@umbrella-hospital.ru<br>
+                        <strong>Режим работы:</strong> Пн–Пт 8:00–20:00, Сб–Вс 9:00–17:00
+                    </p>
+                    <a href="tel:+73822123456" class="btn btn-primary me-2">Позвонить</a>
+                    <a href="mailto:info@umbrella-hospital.ru" class="btn btn-outline-primary">Написать email</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Форма обратной связи</h5>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Ваше имя</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Введите имя">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Введите email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Сообщение</label>
+                            <textarea class="form-control" id="message" name="message" rows="4" placeholder="Ваше сообщение" style='resize:none;'></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 mb-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-0">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2289.123456!2d84.9481!3d56.4881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x42d1b1234567890%3A0xabcdef1234567890!2z0JrQsNGA0L7QstGB0YLQtdC90YHQutC40Lkg0JTQvdC40YHRgtC-0LLQuNGP!5e0!3m2!1sru!2s!4v1699999999999!5m2!1sru!2s" 
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4" style="max-width: 600px;">
+    <h2>Запись №{{ appointment.id }}</h2>
+
+    <div class="card mt-3 shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title">{{ appointment.doctor.full_name }}</h5>
+
+            <p class="card-text">
+                <strong>Дата:</strong> {{ appointment.date }}<br>
+                <strong>Время:</strong> {{ appointment.time }}<br>
+                <strong>Специализация:</strong> {{ appointment.doctor.specialization.name }}<br>
+                <strong>Кабинет:</strong> {{ appointment.doctor.office_number }}<br>
+                <strong>Карта пациента:</strong> №{{ appointment.medical_card.number }}
+            </p>
+        </div>
+    </div>
+
+    <a href="{% url 'appointments:my_appointments' %}" class="btn btn-link mt-3">Назад</a>
+</div>
+{% endblock %}

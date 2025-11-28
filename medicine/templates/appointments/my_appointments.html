@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Мои записи</h2>
+
+    <div class="list-group">
+        {% for a in appointments %}
+        <a href="{% url 'appointment:appointment_detail' a.id %}"
+           class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <div>
+                <strong>{{ a.doctor.full_name }}</strong><br>
+                {{ a.date }} — {{ a.time }}
+            </div>
+            <span class="badge bg-primary rounded-pill">Подробнее</span>
+        </a>
+        {% empty %}
+        <p class="text-muted">У вас пока нет записей.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

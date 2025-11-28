@@ -32,6 +32,7 @@ urlpatterns = [
     path('news/', include('news.urls')),
     path('profile/', include('user_settings.urls')),
     path('patients/', include('patients.urls')),
+    path('appointments/', include('appointment.urls'))
 ]
 
 if settings.DEBUG:

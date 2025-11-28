@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<h1 class="mb-4 text-center">Запись на приём</h1>
+
+<div class="container d-flex justify-content-center">
+    <div class="card p-4 shadow-sm" style="max-width: 700px; width: 100%; border-radius: 15px;">
+
+        <!-- Информация о враче -->
+        <div class="mb-4">
+            <h4 class="text-center">{{ doctor.get_full_name }}</h4>
+            {% if doctor.specialization %}
+                <p class="text-center text-muted">{{ doctor.specialization.name }}</p>
+            {% endif %}
+        </div>
+
+        <!-- Выбор даты -->
+        <form method="get" id="dateForm">
+            <div class="mb-3">
+                {% bootstrap_field form.date %}
+            </div>
+        </form>
+
+        {% if slots %}
+        <hr>
+
+        <!-- Выбор времени -->
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="date" value="{{ selected_date }}">
+
+            <h5 class="mb-3">Свободное время:</h5>
+
+            <div class="d-flex flex-wrap gap-2">
+                {% for slot in slots %}
+                <label class="btn btn-outline-primary slot-card">
+                    <input type="radio" name="slot" value="{{ slot.id }}" class="d-none">
+                    {{ slot.start }} — {{ slot.end }}
+                </label>
+                {% endfor %}
+            </div>
+
+            <button type="submit" class="btn btn-success w-100 mt-4">
+                Записаться
+            </button>
+        </form>
+        {% endif %}
+
+    </div>
+</div>
+
+<script>
+document.getElementById("id_date").addEventListener("change", function () {
+    document.getElementById("dateForm").submit();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".slot-card").forEach(card => {
+        card.addEventListener("click", () => {
+            document.querySelectorAll(".slot-card").forEach(c => c.classList.remove("active"));
+            card.classList.add("active");
+        });
+    });
+});
+</script>
+
+<style>
+.slot-card {
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 10px 14px;
+}
+
+.slot-card.active {
+    background-color: #0d6efd;
+    color: white;
+    border-color: #0d6efd;
+}
+</style>
+
+{% endblock %}

@@ -12,3 +12,7 @@ class HomePageView(TemplateView):
         context["news_list"] = NewsArticle.objects.order_by(
             '-published_date')[:6]
         return context
+
+
+class ContactsPageView(TemplateView):
+    template_name = 'pages/contacts.html'

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Специализация: {{ specialization.name }}</h2>
+
+    <form method="get" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="q" value="{{ request.GET.q }}" class="form-control" placeholder="Поиск...">
+            <button class="btn btn-primary" type="submit">Найти</button>
+        </div>
+    </form>
+
+    <div class="row">
+        {% for doctor in doctors %}
+        <div class="col-md-4 mb-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ doctor.get_full_name }}</h5>
+
+            <p class="card-text mb-1">
+                <strong>Категория:</strong> {{ doctor.get_category_display|default:"Без категории" }}
+            </p>
+
+            {% if doctor.bio %}
+            <p class="card-text mt-2">{{ doctor.preview_info|truncatewords:20 }}</p>
+            {% endif %}
+
+            <br>
+
+            <a href="{% url 'appointment:appointment_create' doctor.id %}" class="btn btn-primary mt-auto">Записаться</a>
+        </div>
+    </div>
+</div>
+{% empty %}
+<p>В этой специализации пока нет врачей.</p>
+{% endfor %}
+</div>
+</div>
+{% endblock %}

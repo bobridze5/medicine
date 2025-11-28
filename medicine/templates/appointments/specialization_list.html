@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Выберите специализацию</h2>
+
+    <form method="get" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="q" value="{{ request.GET.q }}" class="form-control" placeholder="Поиск...">
+            <button class="btn btn-primary" type="submit">Найти</button>
+        </div>
+    </form>
+
+    <div class="row">
+        {% for spec in specializations %}
+        <div class="col-md-4 mb-3">
+            <a href="{% url 'appointment:doctors_by_specialization' spec.id %}" class="text-decoration-none text-dark">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ spec.name }}</h5>
+                        <p class="card-text text-muted">{{ spec.description|default:"" }}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% empty %}
+        <p>Специализации отсутствуют.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
