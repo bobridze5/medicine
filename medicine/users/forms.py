@@ -22,6 +22,12 @@ class UserCreationForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={'placeholder': 'example@mail.ru'}),
         }
 
+        error_messages = {
+            'email': {
+                'unique': "Пользователь с таким адресом электронной почты уже существует.",
+            },
+        }
+
     def clean_password1(self):
         password1 = self.cleaned_data.get('password1')
 
