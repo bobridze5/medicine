@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import (ListView, DetailView, CreateView)
-from patients.models import MedicalCard
+from patients.models import MedicalCard, Patient
 from doctors.models import Doctor, Specialization
 from .models import Appointment, TimeSlot
 from .forms import AppointmentForm
@@ -91,6 +91,7 @@ class AppointmentCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         doctor = get_object_or_404(Doctor, id=self.kwargs['doctor_id'])
         user = self.request.user
+        patient = get_object_or_404(Patient, user=user)
 
         slot_id = self.request.POST.get("slot")
         if not slot_id:
@@ -108,13 +109,13 @@ class AppointmentCreateView(LoginRequiredMixin, CreateView):
 
         form.instance.slot_id = slot_id
         form.instance.doctor = doctor
-        form.instance.patient = user
-        form.instance.medical_card = MedicalCard.objects.get(user=user)
+        form.instance.patient = patient
+        form.instance.medical_card = MedicalCard.objects.get(patient=patient)
 
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('appointments:appointment_detail', kwargs={'pk': self.object.pk})
+        return reverse_lazy('appointment:appointment_detail', kwargs={'pk': self.object.pk})
 
 
 # -----------------------------------------------------------
@@ -126,7 +127,8 @@ class PatientAppointmentsListView(LoginRequiredMixin, ListView):
     context_object_name = 'appointments'
 
     def get_queryset(self):
-        return Appointment.objects.filter(patient=self.request.user).order_by('-date', '-time')
+        patient = Patient.objects.get(user=self.request.user)
+        return Appointment.objects.filter(patient=patient).order_by('-date',)
 
 
 # -----------------------------------------------------------
